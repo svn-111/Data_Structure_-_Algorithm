@@ -1,27 +1,41 @@
 #include<stdio.h>
-
+int cntee=0;
 struct node
 {
     int data;
     struct node *link;
 };
-int count_element(struct node *head){
-    int cnt=0;
-    while(head!=NULL)
+int count_element(struct node *head)
+{
+    if(head==NULL)
+        printf("Linked List is Empty\n");
+    else
     {
-       cnt++;
-       head=head->link;
+        cntee=0;
+        while(head!=NULL)
+        {
+            cntee++;
+            head=head->link;
+        }
+        printf("Count=%d\n",cntee);
     }
-    printf("Count=%d\n",cnt);
 }
-int display_element(struct node *head){
-    while(head!=NULL)
+int display_element(struct node *head)
+{
+    if(head==NULL)
+        printf("Linked List is Empty\n");
+    else
     {
-        printf("%d---%d\n",head->data,head->link);
-        head=head->link;
+        while(head!=NULL)
+        {
+            printf("%d---%d\n",head->data,head->link);
+            head=head->link;
+        }
     }
+
 }
-int add_elemente(struct node *head){
+int add_elemente(struct node *head)
+{
     int elem;
     printf("Insert the value:\n");
     scanf("%d",&elem);
@@ -36,7 +50,8 @@ int add_elemente(struct node *head){
     head->link=newelement;
     printf("%d added Succesfully\n",elem);
 }
-int add_elementb(struct node *head){
+int add_elementb(struct node *head)
+{
     int elem;
     printf("Insert the value:\n");
     scanf("%d", &elem);
@@ -63,13 +78,105 @@ int add_elementc(struct node *head)
     temp->link=NULL;
 
     int n=1;
-    while(n!=pos-1){
+    while(n!=pos-1)
+    {
         ptr=ptr->link;
         n++;
     }
     temp->link=ptr->link;
     ptr->link=temp;
-    printf("%d at %d position added successfully",val,pos);
+    printf("%d at %d position added successfully.\n",val,pos);
+}
+int delete_elementc(struct node *head)
+{
+    struct node *ptr1,*ptr2,*ptr3;
+    ptr1=head;
+    // ptr2=head;
+    //ptr3=head;
+    int pos;
+    printf("Which position do you want to remove?\nEnter Position:");
+    scanf("%d",&pos);
+    int cnt=1;
+    while(cnt!=pos-1)
+    {
+        ptr1=ptr1->link;
+        cnt++;
+    }
+    //printf("%d----%d\n",ptr1->data,ptr1->link);
+    ptr2=ptr1->link;
+    ptr3=ptr2->link;
+    /* cnt=1;
+     while(cnt!=pos+1)
+     {
+         ptr2=ptr2->link;
+         cnt++;
+     }*/
+    //printf("%d----%d",ptr2->data,ptr2->link);
+    ptr1->link=ptr3;
+    free(ptr2);
+    ptr2=NULL;
+    printf("position %d deleted successfully\n",pos);
+}
+int delete_elementb(struct node *head)
+{
+    struct node *temp=head;
+    head=head->link;
+    free(temp);
+    temp=NULL;
+    printf("1st position Deleted Successfully\n");
+    return head;
+}
+/*int delete_elemente(struct node *head)
+{
+    struct node *ptr;
+    ptr=head;
+    int cnt=1;
+    while(cnt!=cntee-1)
+    {
+        ptr=ptr->link;
+        cnt++;
+    }
+    //printf("%d---%d",ptr->data,ptr->link);
+    ptr->link=NULL;
+    printf("Last position deleted successfully\n");
+}
+*/
+int delete_elemente(struct node *head)
+{
+    struct node *ptr,*ptr2;
+    ptr=head;
+    while(ptr->link!=NULL)
+    {
+        ptr2=ptr;
+        ptr=ptr->link;
+        //cnt++;
+    }
+    //Another Way Using only one pointer
+    /*while(ptr->link->link!=NULL)
+    {
+        ptr=ptr->link;
+    }
+    free(ptr->link)
+    ptr->link=NULL;*/
+    //printf("%d---%d",ptr->data,ptr->link);
+    ptr2->link=NULL;
+    free(ptr);
+    ptr=NULL;
+    printf("Last position deleted successfully\n");
+}
+
+int delete_entire(struct node *head)
+{
+    struct node *ptr;
+    ptr=head;
+    while(ptr!=NULL)
+    {
+        ptr=ptr->link;
+        free(head);
+        head=ptr;
+    }
+    return head;
+    printf("All node Deleted Successfully\n");
 }
 int main()
 {
@@ -86,7 +193,8 @@ int main()
 
     while(1)
     {
-        printf("What do you want:\n1.Show the elements.\n2.Number of element.\n3.Insert an element at end\n4.Insert an element at beginning\n5.Insert an element at certain position\n");
+        printf("What do you want:\n1.Show the elements.\n2.Number of element.\n3.Insert an element\n");
+        printf("4.Delete an element.\n5.Delete entire list.\n");
         int x;
         scanf("%d",&x);
         if(x==1)
@@ -99,14 +207,74 @@ int main()
         }
         else if(x==3)
         {
-            add_elemente(head);
+            while(1)
+            {
+                int opt1;
+                printf("1. At end;\n2. At beginning;\n3. At certain position;\n4. Back;\n");
+                printf("Enter option:");
+                scanf("%d",&opt1);
+                if(opt1==1)
+                {
+                    add_elemente(head);
+                }
+                else if(opt1==2)
+                {
+                    head=add_elementb(head);
+                }
+                else if(opt1==3)
+                {
+                    add_elementc(head);
+                }
+                else if(opt1==4)
+                {
+                    break;
+                }
+                else
+                {
+                    printf("Invalid option.\n");
+                }
+            }
+
         }
         else if(x==4)
         {
-            head=add_elementb(head);
+            while(1)
+            {
+                int opt2;
+                printf("1. At end;\n2. At beginning;\n3. At certain position;\n4. Back;\n");
+                printf("Enter option:");
+                scanf("%d",&opt2);
+                if(opt2==1)
+                {
+                    delete_elemente(head);
+                }
+                else if(opt2==2)
+                {
+                    head=delete_elementb(head);
+
+                }
+                else if(opt2==3)
+                {
+                    delete_elementc(head);
+                }
+                else if(opt2==4)
+                {
+                    break;
+                }
+                else
+                {
+                    printf("Invalid option.\n");
+                }
+            }
+
         }
-        else{
-            add_elementc(head);
+        else if(x==5)
+        {
+            head=delete_entire(head);
+        }
+        else
+        {
+            printf("Invalid.\n");
         }
     }
 
