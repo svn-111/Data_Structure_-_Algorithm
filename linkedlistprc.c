@@ -5,6 +5,9 @@ struct node
     int data;
     struct node *link;
 };
+
+//COUNTING ELEMENT
+
 int count_element(struct node *head)
 {
     if(head==NULL)
@@ -20,6 +23,9 @@ int count_element(struct node *head)
         printf("Count=%d\n",cntee);
     }
 }
+
+//PRINT ALL ELEMENT
+
 int display_element(struct node *head)
 {
     if(head==NULL)
@@ -34,6 +40,9 @@ int display_element(struct node *head)
     }
 
 }
+
+//ADD ELEMENT AT THE END
+
 int add_elemente(struct node *head)
 {
     int elem;
@@ -50,6 +59,9 @@ int add_elemente(struct node *head)
     head->link=newelement;
     printf("%d added Succesfully\n",elem);
 }
+
+//ADD ELEMENT AT THE BEGINNING
+
 int add_elementb(struct node *head)
 {
     int elem;
@@ -64,6 +76,8 @@ int add_elementb(struct node *head)
     printf("%d Added Successfully\n",elem);
     return head;
 }
+
+//ADD ELEMENT AT CERTAIN POSITION
 
 int add_elementc(struct node *head)
 {
@@ -87,6 +101,9 @@ int add_elementc(struct node *head)
     ptr->link=temp;
     printf("%d at %d position added successfully.\n",val,pos);
 }
+
+//DELETE ELEMENT OF CERTAIN POSITION
+
 int delete_elementc(struct node *head)
 {
     struct node *ptr1,*ptr2,*ptr3;
@@ -117,6 +134,9 @@ int delete_elementc(struct node *head)
     ptr2=NULL;
     printf("position %d deleted successfully\n",pos);
 }
+
+//DELENT ELEMENT AT BEGINNING
+
 int delete_elementb(struct node *head)
 {
     struct node *temp=head;
@@ -141,6 +161,9 @@ int delete_elementb(struct node *head)
     printf("Last position deleted successfully\n");
 }
 */
+
+//DELEMENT ELEMENT AT ELEMENT
+
 int delete_elemente(struct node *head)
 {
     struct node *ptr,*ptr2;
@@ -165,6 +188,8 @@ int delete_elemente(struct node *head)
     printf("Last position deleted successfully\n");
 }
 
+//DELETE ENTIRE LINKED LIST
+
 int delete_entire(struct node *head)
 {
     struct node *ptr;
@@ -178,6 +203,9 @@ int delete_entire(struct node *head)
     return head;
     printf("All node Deleted Successfully\n");
 }
+
+//REVERSE LINKED LIST
+
 reverse_ll(struct node *head)
 {
     struct node *ptr1,*ptr2;
@@ -191,8 +219,12 @@ reverse_ll(struct node *head)
     }
 
     head=ptr1;
+    printf("LinkedList Reversed Successfully...\n");
     return head;
 }
+
+//MAIN FUNCTION
+
 int main()
 {
     //Manually Inserting two Elements;;;;
