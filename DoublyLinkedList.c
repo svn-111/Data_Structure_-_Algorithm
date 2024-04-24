@@ -92,6 +92,10 @@ int InsertElementCer(struct node *head,int data)
     temp->prev=curr;
     printf("Element Added Successfully...\n");
 }
+int DeleteElementEnd(struct node *head)
+{
+
+}
 int main()
 {
     struct node *head=malloc(sizeof(struct node));
@@ -158,11 +162,48 @@ int main()
         }
         else if(opt==4)
         {
+            printf("Where do you want to delete?\n");
+            printf("1.At End;\n2.At Beginning;\n3.At Certain Position;\n4.Back\n");
+            int opt2;
+            scanf("%d",&opt2);
+            if(opt2==4)
+            {
+                break;
+            }
+            else if(opt2==1)
+            {
+                if(head==NULL)
+                    printf("LinkedList is Empty...\n");
+                else
+                {
+                    struct node *ptr,*ptr1;
+                    ptr=head;
+                    while(ptr->next->next!=NULL)
+                    {
+                        ptr=ptr->next;
+                    }
+                    ptr1=ptr->next;
+                    ptr->next=NULL;
+                    free(ptr1);
+                    printf("Elemented deleted Successfully...\n");
+                }
+            }
 
+            else if(opt2==2)
+            {
+
+            }
+            else if(opt2==3)
+            {
+
+            }
+            else{
+                printf("Invalid Option...\n");
+            }
         }
         else
         {
-            break;
+            printf("Invalid Option...\n");
         }
 
     }
