@@ -67,6 +67,31 @@ int CountElement(struct node *head)
         printf("Number of Elemenet : %d\n",CntNode);
     }
 }
+int InsertElementCer(struct node *head,int data)
+{
+    int pos;
+    printf("Enter Position:\n");
+    scanf("%d",&pos);
+    //printf("Enter Data:\n");
+    //scanf("%d",&data);
+    int cnt=1;
+    struct node *curr=malloc(sizeof(struct node));
+    curr->data=data;
+    curr->next=NULL;
+    curr->prev=NULL;
+    while(cnt!=pos-1)
+    {
+        head=head->next;
+        cnt++;
+    }
+    struct node *temp;
+    temp=head->next;
+    curr->prev=head;
+    curr->next=temp;
+    head->next=curr;
+    temp->prev=curr;
+    printf("Element Added Successfully...\n");
+}
 int main()
 {
     struct node *head=malloc(sizeof(struct node));
@@ -120,6 +145,7 @@ int main()
                     else if(opt1==3)
                     {
                         //InsertElmentCer(head);
+                        InsertElementCer(head,data);
                     }
                 }
 
