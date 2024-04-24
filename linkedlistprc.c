@@ -178,6 +178,21 @@ int delete_entire(struct node *head)
     return head;
     printf("All node Deleted Successfully\n");
 }
+reverse_ll(struct node *head)
+{
+    struct node *ptr1,*ptr2;
+    ptr1=NULL,ptr2=NULL;
+    while(head!=NULL)
+    {
+        ptr2=head->link;
+        head->link=ptr1;
+        ptr1=head;
+        head=ptr2;
+    }
+
+    head=ptr1;
+    return head;
+}
 int main()
 {
     //Manually Inserting two Elements;;;;
@@ -194,7 +209,7 @@ int main()
     while(1)
     {
         printf("What do you want:\n1.Show the elements.\n2.Number of element.\n3.Insert an element\n");
-        printf("4.Delete an element.\n5.Delete entire list.\n");
+        printf("4.Delete an element.\n5.Delete entire list.\n6.Reverse LinkedList.\n");
         int x;
         scanf("%d",&x);
         if(x==1)
@@ -271,6 +286,10 @@ int main()
         else if(x==5)
         {
             head=delete_entire(head);
+        }
+        else if(x==6)
+        {
+            head=reverse_ll(head);
         }
         else
         {
