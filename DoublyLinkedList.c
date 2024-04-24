@@ -94,7 +94,37 @@ int InsertElementCer(struct node *head,int data)
 }
 int DeleteElementEnd(struct node *head)
 {
-
+    if(head==NULL)
+        printf("LinkedList is Empty...\n");
+    else
+    {
+        struct node *ptr,*ptr1;
+        ptr=head;
+        while(ptr->next->next!=NULL)
+        {
+            ptr=ptr->next;
+        }
+        ptr1=ptr->next;
+        ptr->next=NULL;
+        free(ptr1);
+        printf("Element deleted Successfully...\n");
+    }
+}
+int DeleteElementBeg(struct node *head)
+{
+    struct node *ptr1,*ptr2;
+    ptr1=head;
+    if(head==NULL)
+        printf("List is Empty...\n");
+    else
+    {
+        ptr1=head;
+        head=head->next;
+        head->prev=NULL;
+        free(ptr1);
+        printf("Element Deleted Successfully...\n");
+        return head;
+    }
 }
 int main()
 {
@@ -162,44 +192,48 @@ int main()
         }
         else if(opt==4)
         {
-            printf("Where do you want to delete?\n");
-            printf("1.At End;\n2.At Beginning;\n3.At Certain Position;\n4.Back\n");
-            int opt2;
-            scanf("%d",&opt2);
-            if(opt2==4)
+            while(1)
             {
-                break;
-            }
-            else if(opt2==1)
-            {
-                if(head==NULL)
-                    printf("LinkedList is Empty...\n");
+                printf("Where do you want to delete?\n");
+                printf("1.At End;\n2.At Beginning;\n3.At Certain Position;\n4.Back\n");
+                int opt2;
+                scanf("%d",&opt2);
+                if(opt2==4)
+                {
+                    break;
+                }
+                else if(opt2==1)
+                {
+                    DeleteElementEnd(head);
+                }
+
+                else if(opt2==2)
+                {
+                    head=DeleteElementBeg(head);
+                }
+                else if(opt2==3)
+                {
+                    struct node *ptr1,*ptr2,*ptr3;
+                    ptr1=head;
+                    int pos;
+                    printf("Enter the position:\n");
+                    scanf("%d",&pos);
+                    int cnt=1;
+                    while(cnt!=pos-1)
+                        head=head->next;
+                    ptr2=head->next;
+                    ptr3=ptr2->next;
+                    head->next=ptr3;
+                    ptr3->prev=head;
+                    free(ptr2);
+                    printf("Element Deleted Successfully...\n");
+                }
                 else
                 {
-                    struct node *ptr,*ptr1;
-                    ptr=head;
-                    while(ptr->next->next!=NULL)
-                    {
-                        ptr=ptr->next;
-                    }
-                    ptr1=ptr->next;
-                    ptr->next=NULL;
-                    free(ptr1);
-                    printf("Elemented deleted Successfully...\n");
+                    printf("Invalid Option...\n");
                 }
             }
 
-            else if(opt2==2)
-            {
-
-            }
-            else if(opt2==3)
-            {
-
-            }
-            else{
-                printf("Invalid Option...\n");
-            }
         }
         else
         {
