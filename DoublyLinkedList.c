@@ -22,6 +22,34 @@ int DisplayElement(struct node *head)
         }
     }
 }
+
+int InsertElementEnd(struct node *head,int data)
+{
+
+    struct node *curr=malloc(sizeof(struct node));
+    curr->data=data;
+    curr->next=NULL;
+    curr->prev=NULL;
+    while(head->next!=NULL)
+    {
+        head=head->next;
+    }
+    curr->prev=head;
+    head->next=curr;
+    printf("Element added Successfully...\n");
+}
+
+int InsertElementBeg(struct node *head,int data)
+{
+    struct node *curr=malloc(sizeof(struct node));
+    curr->data=data;
+    curr->prev=NULL;
+    curr->next=NULL;
+    head->prev=curr;
+    curr->next=head;
+    head=curr;
+    return head;
+}
 int main()
 {
     struct node *head=malloc(sizeof(struct node));
@@ -47,11 +75,41 @@ int main()
         {
             DisplayElement(head);
         }
-        else if(opt==2)
+        else if(opt==3)
         {
+            while(1)
+            {
+                printf("Where do you want to insert Element?\n");
+                printf("1.At End;\n2.At Beginning;\n3.At Certain Position;\n4.Back\n");
+                int opt1;
+                scanf("%d",&opt1);
+                if(opt1==4)
+                {
+                    break;
+                }
+                else
+                {
+                    int data;
+                    printf("Enter Data:");
+                    scanf("%d",&data);
+                    if(opt1==1)
+                    {
+                        InsertElementEnd(head,data);
+                    }
+                    else if(opt1==2)
+                    {
+                        head=InsertElementBeg(head,data);
+                    }
+                    else if(opt1==3)
+                    {
+
+                    }
+                }
+
+            }
 
         }
-        else if(opt==3)
+        else if(opt==2)
         {
 
         }
