@@ -1,5 +1,6 @@
 #include<stdio.h>
 
+int CntNode=0;
 struct node
 {
     struct node *prev;
@@ -49,6 +50,22 @@ int InsertElementBeg(struct node *head,int data)
     curr->next=head;
     head=curr;
     return head;
+}
+
+int CountElement(struct node *head)
+{
+    if(head==NULL)
+        printf("LinkedList is empty...\n");
+    else
+    {
+        CntNode=0;
+        while(head!=NULL)
+        {
+            CntNode++;
+            head=head->next;
+        }
+        printf("Number of Elemenet : %d\n",CntNode);
+    }
 }
 int main()
 {
@@ -102,7 +119,7 @@ int main()
                     }
                     else if(opt1==3)
                     {
-
+                        //InsertElmentCer(head);
                     }
                 }
 
@@ -111,7 +128,7 @@ int main()
         }
         else if(opt==2)
         {
-
+            CountElement(head);
         }
         else if(opt==4)
         {
